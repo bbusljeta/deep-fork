@@ -1,0 +1,14 @@
+{
+  "tabWidth": 4,
+  "singleQuote": true,
+  "bracketSameLine": true,
+  "trailingComma": "all",
+  "overrides": [
+    {
+      "files": ["*.tsx", "*.ts", "*.json", "*.yml"],
+      "options": {
+        "tabWidth": 2
+      }
+    }
+  ]
+}
