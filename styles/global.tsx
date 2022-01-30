@@ -74,6 +74,26 @@ const footerLink = css`
   flex-grow: 1;
 `;
 
+const form = css`
+  display: flex;
+  flex-direction: column;
+`;
+
+const input = css`
+ padding: 16px;
+ margin: 8px;
+`;
+const textarea = css`
+  padding: 20px;
+  margin: 16px 8px;
+`;
+
+const button = css`
+  padding: 8px 12px;
+  margin: 16px 8px;
+  cursor: pointer;
+`;
+
 export const globalStyles = {
   global,
   main,
@@ -83,5 +103,9 @@ export const globalStyles = {
   description,
   logo,
   footer,
-  footerLink
+  footerLink,
+  form,
+  textarea,
+  input,
+  button
 };

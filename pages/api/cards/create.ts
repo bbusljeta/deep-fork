@@ -1,12 +1,13 @@
 // Next.js API route support: https://nextjs.org/docs/api-routes/introduction
+
+import { firestore } from '@common/firebase';
 import type { NextApiRequest, NextApiResponse } from 'next';
 
-export default function handler(
+export default async function handler(
     req: NextApiRequest,
     res: NextApiResponse,
 ) {
     const { title, description } = req.body
-    console.log("title", title);
-    console.log("desription", description);
+    await firestore.collection('cards').doc().create({ title, description });
     res.status(200).json({ title, description });
 }

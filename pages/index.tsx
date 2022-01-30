@@ -1,12 +1,22 @@
 
 import { Card } from '@components/Card';
-import type { NextPage } from 'next';
+import type { GetStaticProps, NextPage } from 'next';
 import Head from 'next/head';
 import Image from 'next/image';
 import { globalStyles } from '../styles';
 import Link from 'next/link';
+import { firestore } from '@common/firebase';
 
-const Home: NextPage = () => {
+interface Card {
+  id: string;
+  title: string;
+  description: string;
+}
+interface Props {
+  cards: Array<Card>
+}
+
+const Home: NextPage<Props> = ({ cards }) => {
   return (
     <div css={globalStyles.container}>
       <Head>
@@ -25,12 +35,19 @@ const Home: NextPage = () => {
         </p>
 
         <div css={globalStyles.grid}>
-          <Card
-            id='1234'
-            title='Documentation'
-            description='Find in-depth information about Next.js features and API.'
-            link='sdada'
-          />
+          {
+            cards.map((card) => (
+              <Link key={card.id} href={`/${encodeURIComponent(card.id)}`}>
+                <a>
+                  <Card
+                    id={card.id}
+                    title={card.title}
+                    description={card.description}
+                  />
+                </a>
+              </Link>
+            ))
+          }
         </div>
       </main>
 
@@ -49,5 +66,16 @@ const Home: NextPage = () => {
     </div>
   );
 };
+
+export const getStaticProps: GetStaticProps = async (context) => {
+  const snapshot = await firestore.collection('cards').get();
+  const data = snapshot.docs.map((doc) => ({ id: doc.id, ...(doc.data() as any) }))
+
+  return {
+    props: {
+      cards: data
+    }, // will be passed to the page component as props
+  }
+}
 
 export default Home;
