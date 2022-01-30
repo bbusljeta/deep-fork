@@ -75,6 +75,7 @@ export const getStaticProps: GetStaticProps = async (context) => {
     props: {
       cards: data
     }, // will be passed to the page component as props
+    revalidate: 10, // In seconds
   }
 }
 
