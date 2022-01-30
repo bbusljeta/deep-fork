@@ -63,8 +63,9 @@ export const getStaticPaths: GetStaticPaths = async () => {
     const snapshot = await firestore.collection('cards').get();
     const data = snapshot.docs.map((doc) => ({ ...(doc.data() as Card), id: doc.id }));
     const params = data.map((card) => ({ params: { id: card.id } }));
+    const [first] = params;
     return {
-        paths: params,
+        paths: [first],
         fallback: true // false or 'blocking'
     };
 }
