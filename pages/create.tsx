@@ -19,7 +19,6 @@ const CreateCard: NextPage = () => {
     const onSubmit = handleSubmit(async ({ title, description }) => {
 
         const res = await fetch(API, { method: "POST", headers: { 'Content-Type': 'application/json', }, body: JSON.stringify({ title, description }) });
-        const values = await res.json()
     })
     return (
         <div css={globalStyles.container}>
