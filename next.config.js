@@ -3,6 +3,9 @@ const withBundleAnalyzer = require('@next/bundle-analyzer');
 
 const nextConfig = {
     reactStrictMode: true,
+    experimental: {
+        outputStandalone: true,
+    },
     async rewrites() {
         return [
             {
