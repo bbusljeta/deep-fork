@@ -4,7 +4,9 @@ services:
         env_file:
             - .env.local
         build: .
+        restart: always
     nginx:
         build: ./nginx
+        restart: always
         ports:
             - 80:80

@@ -3,45 +3,10 @@ const withBundleAnalyzer = require('@next/bundle-analyzer');
 
 const nextConfig = {
     reactStrictMode: true,
+    // compression will be done by nginx
+    compress: false,
     experimental: {
         outputStandalone: true,
-    },
-    async rewrites() {
-        return [
-            {
-                source: '/post',
-                destination: '/post?title=Some&action=edit',
-            },
-        ]
-    },
-    /* async redirects() {
-        return [
-            {
-                source: '/about',
-                destination: '/',
-                permanent: true,
-            },
-        ]
-    },
-    async headers() {
-        return [
-            {
-                source: '/about',
-                headers: [
-                    {
-                        key: 'x-custom-header',
-                        value: 'my custom header value',
-                    },
-                    {
-                        key: 'x-another-custom-header',
-                        value: 'my other custom header value',
-                    },
-                ],
-            },
-        ]
-    }, */
-    env: {
-        customKey: 'my-value',
     },
     //trailingSlash: true, // /about => /about/
     /* webpack: (config, { buildId, dev, isServer, defaultLoaders, webpack }) => {
